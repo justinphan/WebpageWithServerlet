@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Index Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">   
+            var xmlhttp;
+            function getMyVotes() {
+                if (window.XMLHttpRequest){
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }else{
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                var url = "ShowSessionAndContextVotes";
+                xmlhttp.open("GET", url, true);
+                xmlhttp.onreadystatechange = callback;
+                xmlhttp.send();
+
+            }
+            function callback() {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        document.getElementById("myvotes").innerHTML = xmlhttp.responseText;
+                    }
+                }
+            }
+        </script>
+
+    </head>
+    <body>
+        <a href ="getInfoBeforeForwardingtoJSP">See voting results</a> <br/>
+        <input type="button" value="My Votes" onclick="getMyVotes();" /> <br/>
+        <div id="myvotes"></div>
+    </body>
+</html>
